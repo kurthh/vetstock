@@ -1116,9 +1116,9 @@ function Reports() {
             text: "View stock in and stock out transactions.",
         },
         {
-            icon: "fa-solid fa-chart-line",
-            title: "Demand Report",
-            text: "View medicine demand and forecast results.",
+            icon: "fa-solid fa-notes-medical",
+            title: "Patient Health Report",
+            text: "View patient health records and medical history.",
         },
         {
             icon: "fa-solid fa-triangle-exclamation",

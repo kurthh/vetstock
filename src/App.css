@@ -4,12 +4,6 @@
     box-sizing: border-box;
 }
 
-:root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --sidebar: #111827;
-    ...
-}
 * {
     margin: 0;
     padding: 0;

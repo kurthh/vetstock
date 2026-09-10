@@ -1054,7 +1054,42 @@ function HealthRecords() {
 
 /* ================= FORECAST ================= */
 
+
 function Forecast() {
+    const [forecastGenerated, setForecastGenerated] = useState(false);
+
+    const forecastData = [
+        {
+            medicine: "Amoxicillin 500mg",
+            currentStock: 50,
+            predictedDemand: 42,
+            recommendation: "Sufficient Stock",
+        },
+        {
+            medicine: "Rabies Vaccine",
+            currentStock: 30,
+            predictedDemand: 35,
+            recommendation: "Restock Needed",
+        },
+        {
+            medicine: "Vitamin B Complex",
+            currentStock: 18,
+            predictedDemand: 25,
+            recommendation: "Restock Needed",
+        },
+        {
+            medicine: "Paracetamol",
+            currentStock: 8,
+            predictedDemand: 12,
+            recommendation: "Restock Needed",
+        },
+        {
+            medicine: "Deworming Tablet",
+            currentStock: 75,
+            predictedDemand: 55,
+            recommendation: "Sufficient Stock",
+        },
+    ];
 
     return (
         <div className="page active-page">
@@ -1069,35 +1104,127 @@ function Forecast() {
                     </p>
                 </div>
 
-                <button className="primary-btn">
+                <button
+                    className="primary-btn"
+                    onClick={() => setForecastGenerated(true)}
+                >
                     <i className="fa-solid fa-rotate"></i>
                     &nbsp; Generate Forecast
                 </button>
 
             </div>
 
+            {!forecastGenerated ? (
 
-            <div className="forecast-card">
+                <div className="forecast-card">
 
-                <div className="forecast-placeholder">
+                    <div className="forecast-placeholder">
 
-                    <i className="fa-solid fa-chart-column"></i>
+                        <i className="fa-solid fa-chart-column"></i>
 
-                    <h3>
-                        Demand Forecast
-                    </h3>
+                        <h3>
+                            Demand Forecast
+                        </h3>
 
-                    <p>
-                        Forecast results will appear here.
-                    </p>
+                        <p>
+                            Click "Generate Forecast" to view
+                            predicted medicine demand.
+                        </p>
+
+                    </div>
 
                 </div>
 
-            </div>
+            ) : (
+
+                <div className="card table-card">
+
+                    <div className="card-header">
+
+                        <div>
+                            <h3>Prediction Results</h3>
+
+                            <p>
+                                Estimated future medicine demand
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div className="table-container">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Medicine</th>
+                                    <th>Current Stock</th>
+                                    <th>Predicted Demand</th>
+                                    <th>Prediction Status</th>
+                                    <th>Recommendation</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                {forecastData.map((item) => (
+
+                                    <tr key={item.medicine}>
+
+                                        <td>
+                                            <strong>
+                                                {item.medicine}
+                                            </strong>
+                                        </td>
+
+                                        <td>
+                                            {item.currentStock}
+                                        </td>
+
+                                        <td>
+                                            {item.predictedDemand} units
+                                        </td>
+
+                                        <td>
+
+                                            <span
+                                                className={`badge ${
+                                                    item.predictedDemand >
+                                                    item.currentStock
+                                                        ? "warning-badge"
+                                                        : "success-badge"
+                                                }`}
+                                            >
+                                                {item.predictedDemand >
+                                                item.currentStock
+                                                    ? "High Demand"
+                                                    : "Normal Demand"}
+                                            </span>
+
+                                        </td>
+
+                                        <td>
+                                            {item.recommendation}
+                                        </td>
+
+                                    </tr>
+
+                                ))}
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            )}
 
         </div>
     );
 }
+
 
 
 /* ================= REPORTS ================= */
